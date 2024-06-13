@@ -1,0 +1,47 @@
+*{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: aquamarine;
+}
+
+textarea{
+    font-size: 1vh;
+    width: 100%;
+    height:50vh;
+    padding:0;
+}
+h1{
+    text-align: center;
+    font-size: 2vh;
+}
+.radioButtons{
+    height:2vh;
+    font-size: 2vh;
+    line-height: 2vh;
+    display: grid;
+    grid-template-columns: 1em auto;
+    gap: 0.5em;
+}
+#teamOutput{
+    
+    margin-top:10vh;
+    text-align: center;
+    font-size: 2vh;
+    line-height: 4.5vh;
+ }
+button{
+    position: absolute;
+    left:50%;
+    margin-top: 5vh;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    height: 5vh;
+    font-size: 2vh;
+    padding-left: 10%;
+    padding-right: 10%;
+    font-weight:bold;
+}
+
+
+
+
+
