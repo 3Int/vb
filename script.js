@@ -2,8 +2,11 @@
 
 function randomizeTeams() {
     let teamCount = 2;
-    if(document.getElementById("threeTeams").checked == true){
+    if(document.getElementById("threeTeams").checked){
         teamCount = 3;
+    }
+    if(document.getElementById("nTeams").checked){
+        teamCount = document.getElementById("nTeamsTextField").value;
     }
     const outputField = document.getElementById("teamOutput");
     let textinput = document.getElementById("playerNames").value;
@@ -44,3 +47,15 @@ function* iter(list){
         index++;
     }
 }
+
+function textchangelistener(){
+    let elem = document.getElementById("nTeamsTextField");
+    if(this.checked && this.id ==  "nTeams"){
+        elem.style.display = "block";
+    }
+    else {
+        elem.style.display = "none";
+    }
+}
+buttons = document.querySelectorAll("input[type='radio']");
+buttons.forEach((x) => x.addEventListener("change", textchangelistener));
