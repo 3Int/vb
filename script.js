@@ -73,11 +73,22 @@ function randomizeTeams() {
                 team3.push(nameList[i]);
             }
         }
-        let outputText = "Team1: " + team1 + "<br>" + "Team2: " + team2 + "<br>" + "Team3: " + team3;
+        let outputText = teamstotext([team1, team2, team3])
 
         outputField.innerHTML = outputText;
     }
 
 
     
+}
+function teamstotext(teams){
+    text = "";
+    for(let i =0; i < teams.length; i++){
+        text += "Team{i+1}: "+ teamtotext(teams[i]) + " <br>";
+    }
+    return text;
+}
+
+function teamtotext(team){
+    return team;
 }
