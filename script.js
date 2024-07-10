@@ -11,13 +11,13 @@ function randomizeTeams() {
     
     teams = Array.from({ length: teamCount }, () => []);
     playersPerTeam = Math.floor(names.length / teamCount);
-    namesCopy = [...names]
 
+    let nameslen = names.length;
     iterator = iter(teams);
-    for(let i =0; i < names.length; i++){
-        index = Math.floor(Math.random()* namesCopy.length);
-        n = namesCopy[index]; 
-        namesCopy.splice(index,1);
+    for(let i =0; i < nameslen; i++){
+        index = Math.floor(Math.random()* names.length);
+        n = names[index]; 
+        names.splice(index,1);
         team = iterator.next().value;
         team.push(n);
 
