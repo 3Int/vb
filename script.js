@@ -7,10 +7,7 @@ function randomizeTeams() {
     }
     const outputField = document.getElementById("teamOutput");
     let text = document.getElementById("playerNames").value;
-    text = text.replace(/[^\S\r\n]/g, '');
-    text = text.replace(/^\s*[\r\n]/gm, '');
-    text = text.replace(/^\s*[\r\n]+|[\r\n]+\s*$/g, '');
-    let nameList = text.split('\n');
+    let nameList = text.split('\n').map(function(str){return str.trim();});
     let nameListCopy = [...nameList];
     
     let playerNumbers = nameList.length;
