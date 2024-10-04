@@ -10,7 +10,11 @@ function randomizeTeams() {
     }
     const outputField = document.getElementById("teamOutput");
     let textinput = document.getElementById("playerNames").value;
-    let names = textinput.split('\n').map(function(str){return str.trim();});
+    let names = textinput
+        .split('\n')
+        .map(function(str){return str.trim();})
+        .filter(function(str){return str}); // boolean interpretation is same as non-empty
+
     
     teams = Array.from({ length: teamCount }, () => []);
     playersPerTeam = Math.floor(names.length / teamCount);
