@@ -14,7 +14,8 @@ function randomizeTeams() {
         .split('\n')
         .map(function(str){return str.trim();})
         .filter(function(str){return str}); // boolean interpretation is same as non-empty
-
+    // remove duplicates by using a Set
+    names = [...new Set(names)];
     
     teams = Array.from({ length: teamCount }, () => []);
     playersPerTeam = Math.floor(names.length / teamCount);
@@ -35,7 +36,7 @@ function randomizeTeams() {
 function teamstotext(teams){
     textinput = "";
     for(let i =0; i < teams.length; i++){
-        textinput += "Team"+ (i+1)+ ": "+ teamtotext(teams[i]) + " <br>";
+        textinput += `Team${i+1}(${teams[i].length}) :${teamtotext(teams[i])} <br>`;
     }
     return textinput;
 }
@@ -61,5 +62,7 @@ function textchangelistener(){
         elem.style.display = "none";
     }
 }
-buttons = document.querySelectorAll("input[type='radio']");
-buttons.forEach((x) => x.addEventListener("change", textchangelistener));
+document.addEventListener('DOMContentLoaded', () => {
+    buttons = document.querySelectorAll("input[type='radio']");
+    buttons.forEach((x) => x.addEventListener("change", textchangelistener));
+});
