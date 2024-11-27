@@ -2,30 +2,40 @@
   *{
     text-align: center;
   }
-  .main{
-    display: block;
-  }
 </style>
 <main class="main">
-  <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+  <mat-grid-list cols="1">
+    <h1>Please select the number of teams:</h1>
+  <div>
+  <!--TODO add default selection-->
+  <mat-button-toggle-group id="numTeamsSelector" 
+    value="2"
+    (change)="onNumTeamsSelector($event)"
+    >
     <mat-button-toggle value="2">Two</mat-button-toggle>
     <mat-button-toggle value="3">Three</mat-button-toggle>
     <mat-button-toggle value="n">n</mat-button-toggle>
   </mat-button-toggle-group>
-
+  <mat-form-field id="nTeamsText" [style.display]="numTeamsSelected === 'n' ? 'inline' : 'none'">
+    <mat-label>n</mat-label>
+    <input matInput type="number" pattern="\d*" value="4">
+  </mat-form-field>
+</div>
+<div>
   <mat-form-field>
     <mat-label>Names</mat-label>
-    <textarea matInput></textarea>
+    <textarea matInput rows="18" cols="30"></textarea>
   </mat-form-field>
-
-  <button mat-flat-button>Generate</button>
+</div>
+  <button mat-flat-button >Generate</button>
   
-  <!--TODO replace with ngFor? extract list items as component?-->
+  <!--TODO populate with ngFor? extract list items as component? use table instead of list?-->
   <mat-list>
     <mat-list-item>Team1</mat-list-item>
     <mat-list-item>Team2</mat-list-item>
     <mat-list-item>Team3</mat-list-item>
    </mat-list>
+  </mat-grid-list>
 </main>
 
 <router-outlet />
