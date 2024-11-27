@@ -16,25 +16,40 @@
     <mat-button-toggle value="3">Three</mat-button-toggle>
     <mat-button-toggle value="n">n</mat-button-toggle>
   </mat-button-toggle-group>
-  <mat-form-field id="nTeamsText" [style.display]="numTeamsSelected === 'n' ? 'inline' : 'none'">
-    <mat-label>n</mat-label>
+  <mat-form-field id="nTeamsText" [style.display]="numTeamsSelectorValue === 'n' ? 'inline' : 'none'">
+    <mat-label>n Teams</mat-label>
     <input matInput type="number" pattern="\d*" value="4">
   </mat-form-field>
 </div>
 <div>
   <mat-form-field>
     <mat-label>Names</mat-label>
-    <textarea matInput rows="18" cols="30"></textarea>
+    <textarea matInput 
+      rows="18" 
+      cols="30"
+      style="text-align: left;" 
+      #playerNames
+      ></textarea>
   </mat-form-field>
 </div>
-  <button mat-flat-button >Generate</button>
+  <button mat-flat-button (click)="onButtonGenerate(playerNames.value)">Generate</button>
   
   <!--TODO populate with ngFor? extract list items as component? use table instead of list?-->
-  <mat-list>
-    <mat-list-item>Team1</mat-list-item>
-    <mat-list-item>Team2</mat-list-item>
-    <mat-list-item>Team3</mat-list-item>
-   </mat-list>
+  <table mat-table [dataSource]="teamsArray">
+    <ng-container matColumnDef="teamCount">
+      <th mat-header-cell *matHeaderCellDef>Size</th>
+      <td mat-cell *matCellDef="let element">{{element.length}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="teamNames">
+      <th mat-header-cell *matHeaderCellDef>Names</th>
+      <td mat-cell *matCellDef="let element">{{element}}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>  
+
   </mat-grid-list>
 </main>
 
