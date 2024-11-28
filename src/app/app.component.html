@@ -5,11 +5,14 @@
   mat-button-toggle-group{
     margin-bottom: 6px;
   }
+  #nTeamsText{
+    margin-left: 6px;
+  }
 </style>
 <main class="main">
   <mat-grid-list cols="1">
     <h1>Please select the number of teams:</h1>
-  <div>
+  <div class="nTeams">
   <!--TODO add default selection-->
   <mat-button-toggle-group id="numTeamsSelector" 
     value="2"
@@ -19,9 +22,9 @@
     <mat-button-toggle value="3">Three</mat-button-toggle>
     <mat-button-toggle value="n">n</mat-button-toggle>
   </mat-button-toggle-group>
-  <mat-form-field id="nTeamsText" [style.display]="numTeamsSelectorValue === 'n' ? 'inline' : 'none'">
+  <mat-form-field *ngIf="numTeamsSelectorValue === 'n'" id="nTeamsText" >
     <mat-label>n Teams</mat-label>
-    <input matInput type="number" pattern="\d*" value="4">
+    <input matInput type="number" pattern="\d*" [(ngModel)]="nTeamsValue">
   </mat-form-field>
 </div>
 <div>
