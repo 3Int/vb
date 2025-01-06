@@ -4,10 +4,10 @@
   }
 </style>
 <main class="main">
-  <div class="text-center">
+  <div class="row justify-content-md-center">
     <h1>Please select the number of teams:</h1>
-  <div class="btn-toolbar mb-3" role="toolbar">
-  <div class="btn-group" id="numTeamsSelector" role="group"
+  <div class="btn-toolbar mb-3 col justify-content-center" role="toolbar">
+  <div class="btn-group me-2" id="numTeamsSelector" role="group"
     value="2">
     <input value="2" [(ngModel)]="numTeamsSelectorValue" type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
     <label class="btn btn-outline-primary" for="btnradio1">Two</label>
@@ -18,7 +18,7 @@
     <input value="n" [(ngModel)]="numTeamsSelectorValue" type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
     <label class="btn btn-outline-primary" for="btnradio3">n</label>
   </div>
-  <div *ngIf="numTeamsSelectorValue === 'n'" id="nTeamsText" >
+  <div *ngIf="numTeamsSelectorValue === 'n'" id="nTeamsText" class="col-md-auto">
     <label for="nTeamsField">n Teams</label>
     <input type="number" pattern="\d*" [(ngModel)]="nTeamsValue" id="nTeamsField" class="form-control" >
   </div>
