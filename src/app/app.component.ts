@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import {  AfterViewInit, Component, OnInit} from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, ActivatedRoute } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { CommonModule } from '@angular/common';
@@ -11,13 +11,23 @@ import { CommonModule } from '@angular/common';
   templateUrl: './app.component.html',
   styleUrl: './app.component.less'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'vb';
+  playerNamesValue = "";
   numTeamsSelectorValue = "2";
   numTeamsSelected = 2;
   nTeamsValue = "4";
   teamsArray: string[][] = [];
   displayedColumns = ["teamCount", "teamNames"];
+
+  constructor(private activatedRoute: ActivatedRoute){}
+
+  ngOnInit(): void {
+    //consiedr using Angular's ActivatedRoute here instead
+    const params = new URLSearchParams(window.location.search);
+    const names = params.get('names')?.replaceAll(',', '\n');
+    if (names) this.playerNamesValue = names;
+  }
 
   onButtonGenerate(textinput: string): void{
     if(this.numTeamsSelectorValue === 'n'){
@@ -26,7 +36,7 @@ export class AppComponent {
     else{
       this.numTeamsSelected = Number(this.numTeamsSelectorValue);
     }
-    let names = textinput
+    let names = this.playerNamesValue
         .split('\n')
         .map(function(str){return str.trim();})
         .filter(function(str){return str}); // boolean interpretation is same as non-empty

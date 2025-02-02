@@ -23,20 +23,23 @@
     <input type="number" pattern="\d*" [(ngModel)]="nTeamsValue" id="nTeamsField" class="form-control" >
   </div>
 </div>
+
   <form>
     <div class="container">
     <label for="playerNames">Names</label>
-    <textarea class="form-control mb-3"
+    <textarea [(ngModel)]="playerNamesValue"
+      class="form-control mb-3"
       rows="18" 
       cols="30"
       style="text-align: left;" 
+      name="playerNames"
       #playerNames
       id="playerNames"
       ></textarea>
     </div>
   <button type="button" (click)="onButtonGenerate(playerNames.value)" class="btn btn-primary">Generate</button>
-  
   </form>
+
   <table class="table table-striped">
     <thead>
       <tr>
