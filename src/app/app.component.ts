@@ -47,7 +47,7 @@ export class AppComponent implements OnInit {
     var playersPerTeam = Math.floor(names.length / this.numTeamsSelected);
 
     let nameslen = names.length;
-    function* iter(list: any){
+    function* iter(list: any[]){
         let index = 0;
         while(true){
             yield list[index % list.length];
