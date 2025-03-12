@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute){}
 
   ngOnInit(): void {
-    //consiedr using Angular's ActivatedRoute here instead
+    //TODO consider using Angular's ActivatedRoute here instead
     const params = new URLSearchParams(window.location.search);
     const names = params.get('names')?.replaceAll(',', '\n');
     if (names) this.playerNamesValue = names;
