@@ -23,10 +23,12 @@ export class AppComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute){}
 
   ngOnInit(): void {
-    //TODO consider using Angular's ActivatedRoute here instead
-    const params = new URLSearchParams(window.location.search);
-    const names = params.get('names')?.replaceAll(',', '\n');
-    if (names) this.playerNamesValue = names;
+    this.activatedRoute.queryParams.subscribe(params => {
+      const names = params['names']?.replaceAll(',', '\n');
+      if (names) {
+        this.playerNamesValue = names;
+      }
+    });
   }
 
   onButtonGenerate(textinput: string): void{
