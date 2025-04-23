@@ -36,6 +36,7 @@
   </form>
 
   <table class="table table-striped custom-table">
+  <caption *ngIf="duplicateNames.length >0">Removed: {{ duplicateNames }}</caption>
     <thead>
       <tr>
         <th scope="col">Size</th>

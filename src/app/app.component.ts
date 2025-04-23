@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
   numTeamsSelected = 2;
   nTeamsValue = "4";
   teamsArray: string[][] = [];
-  displayedColumns = ["teamCount", "teamNames"];
+  duplicateNames: string[] = [];
 
   constructor(private activatedRoute: ActivatedRoute){}
 
@@ -38,12 +38,14 @@ export class AppComponent implements OnInit {
     else{
       this.numTeamsSelected = Number(this.numTeamsSelectorValue);
     }
-    let names = this.playerNamesValue
+    let nameslist = this.playerNamesValue
         .split('\n')
         .map(function(str){return str.trim();})
         .filter(function(str){return str}); // boolean interpretation is same as non-empty
     // remove duplicates by using a Set
-    names = [...new Set(names)];
+    let namesset = new Set(nameslist);
+    let names = [...namesset];
+
     
     var teams = Array.from({ length: this.numTeamsSelected }, () => []);
     var playersPerTeam = Math.floor(names.length / this.numTeamsSelected);
