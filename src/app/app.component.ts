@@ -1,9 +1,10 @@
-import {  AfterViewInit, Component, OnInit} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterOutlet, ActivatedRoute } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { CommonModule } from '@angular/common';
+import { filter, take } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -23,7 +24,10 @@ export class AppComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute){}
 
   ngOnInit(): void {
-    this.activatedRoute.queryParams.subscribe(params => {
+    this.activatedRoute.queryParams.pipe(
+      filter(params => Object.keys(params).length > 0), // Only proceed if params are not empty
+      take(1)
+    ).subscribe(params => {
       const names = params['names']?.replaceAll(',', '\n');
       if (names) {
         this.playerNamesValue = names;
@@ -47,8 +51,8 @@ export class AppComponent implements OnInit {
     let names = [...namesset];
 
     
-    var teams = Array.from({ length: this.numTeamsSelected }, () => []);
-    var playersPerTeam = Math.floor(names.length / this.numTeamsSelected);
+    let teams = Array.from({ length: this.numTeamsSelected }, () => []);
+    let playersPerTeam = Math.floor(names.length / this.numTeamsSelected);
 
     let nameslen = names.length;
     function* iter(list: any[]){
@@ -58,12 +62,12 @@ export class AppComponent implements OnInit {
             index++;
         }
     }
-    var iterator = iter(teams);
+    let iterator = iter(teams);
     for(let i =0; i < nameslen; i++){
-        var index = Math.floor(Math.random()* names.length);
-        var n = names[index]; 
+        let index = Math.floor(Math.random()* names.length);
+        let n = names[index]; 
         names.splice(index,1);
-        var team = iterator.next().value;
+        let team = iterator.next().value;
         team.push(n);
 
     }
