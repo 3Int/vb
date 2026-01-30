@@ -1,8 +1,10 @@
-import { Component, OnInit} from '@angular/core';
+// Original Team Generation Screen for arbitrary size and number of teams
+import { Component, Input, OnInit} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterOutlet, ActivatedRoute } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from '@angular/common';
+import { Player } from '../model';
 
 @Component({
   selector: 'app-screen-basic',
@@ -11,6 +13,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './screen-basic.component.less'
 })
 export class ScreenBasicComponent {
+  @Input() players!: Player[];
   playerNamesValue = "";
   numTeamsSelectorValue = "2";
   numTeamsSelected = 2;
@@ -35,7 +38,6 @@ export class ScreenBasicComponent {
 
     
     let teams = Array.from({ length: this.numTeamsSelected }, () => []);
-    let playersPerTeam = Math.floor(names.length / this.numTeamsSelected);
 
     let nameslen = names.length;
     function* iter(list: any[]){

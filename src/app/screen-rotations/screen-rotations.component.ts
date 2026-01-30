@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+// Team Generation Screen respecting volleyball roles as defined by `../model/Player`
+import { Component, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Player } from '../model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -11,7 +12,7 @@ import { ModalRotationsComponent } from '../modal-rotations/modal-rotations.comp
   styleUrl: './screen-rotations.component.less'
 })
 export class ScreenRotationsComponent {
-  players: Player[] = [];
+  @Input() players!: Player[];
   newItem: string = "";
 
   constructor(private modalService: NgbModal) {}
@@ -23,20 +24,17 @@ export class ScreenRotationsComponent {
     }
   }
 
-  openPlayerDialog(player: Player) {
+  openPlayerModal(player: Player){
     const modalRef = this.modalService.open(ModalRotationsComponent);
     modalRef.componentInstance.player = player;
-
+    /*
     modalRef.result.then((updatedPlayer) => {
       // Handle the updated player data if needed
       console.log('Player updated:', updatedPlayer);
     }).catch((error) => {
       console.log('Modal dismissed');
     });
-  }
-  open(player: Player){
-    const modalRef = this.modalService.open(ModalRotationsComponent);
-    modalRef.componentInstance.player = player;
+    */
   }
 
 }

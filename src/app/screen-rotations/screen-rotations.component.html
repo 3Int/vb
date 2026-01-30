@@ -4,7 +4,7 @@
   <ul class="list-group mb-3">
       @for (player of players; track $index) {
         <li class="list-group-item">{{ player.name }}</li>
-        <button class="btn btn-outline-primary" (click)="open(player)">
+        <button class="btn btn-outline-primary" (click)="openPlayerModal(player)">
 	<div>Edit Roles</div>
 </button>
       }
