@@ -6,10 +6,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from '@angular/common';
 import { filter, take } from 'rxjs';
 import { ScreenBasicComponent } from "./screen-basic/screen-basic.component";
+import { ScreenRotationsComponent } from './screen-rotations/screen-rotations.component';
 
 @Component({
   selector: 'app-root',
-  imports: [NgbModule, RouterOutlet, CommonModule, FormsModule, ScreenBasicComponent],
+  imports: [NgbModule, RouterOutlet, CommonModule, FormsModule, ScreenBasicComponent, ScreenRotationsComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.less'
 })

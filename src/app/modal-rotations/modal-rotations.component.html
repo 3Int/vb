@@ -1,0 +1,85 @@
+<ng-template #rotationsModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Edit Player Roles</h4>
+    <button
+      type="button"
+      class="btn-close"
+      (click)="modal.dismiss()"
+      aria-label="Close"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="mb-3">
+        <label class="form-label">{{ player.name }}</label>
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          [(ngModel)]="player.outside"
+          name="outside"
+          id="outside"
+        />
+        <label class="form-check-label" for="outside">Outside</label>
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          [(ngModel)]="player.middle"
+          name="middle"
+          id="middle"
+        />
+        <label class="form-check-label" for="middle">Middle</label>
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          [(ngModel)]="player.opposite"
+          name="opposite"
+          id="opposite"
+        />
+        <label class="form-check-label" for="opposite">Opposite</label>
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          [(ngModel)]="player.setter"
+          name="setter"
+          id="setter"
+        />
+        <label class="form-check-label" for="setter">Setter</label>
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          [(ngModel)]="player.libero"
+          name="libero"
+          id="libero"
+        />
+        <label class="form-check-label" for="libero">Libero</label>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-secondary"
+      (click)="modal.dismiss()"
+    >
+      Cancel
+    </button>
+    <button
+      type="button"
+      class="btn btn-primary"
+      (click)="savePlayer(); modal.close()"
+    >
+      Save
+    </button>
+  </div>
+</ng-template>
+

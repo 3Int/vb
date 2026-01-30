@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-screen-basic',
-  imports: [NgbModule, RouterOutlet, CommonModule, FormsModule, ScreenBasicComponent],
+  imports: [NgbModule, RouterOutlet, CommonModule, FormsModule],
   templateUrl: './screen-basic.component.html',
   styleUrl: './screen-basic.component.less'
 })
