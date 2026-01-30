@@ -1,0 +1,55 @@
+  <div class="row justify-content-md-center">
+    <h1>Please select the number of teams:</h1>
+  <div class="btn-toolbar mb-3 col justify-content-center" role="toolbar">
+  <div class="btn-group me-2" id="numTeamsSelector" role="group"
+    value="2">
+    <input value="2" [(ngModel)]="numTeamsSelectorValue" type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+    <label class="btn btn-outline-primary" for="btnradio1">Two</label>
+
+    <input value="3" [(ngModel)]="numTeamsSelectorValue" type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+    <label class="btn btn-outline-primary" for="btnradio2">Three</label>
+
+    <input value="n" [(ngModel)]="numTeamsSelectorValue" type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+    <label class="btn btn-outline-primary" for="btnradio3">n</label>
+  </div>
+  <div *ngIf="numTeamsSelectorValue === 'n'" id="nTeamsText" class="col-md-auto">
+    <label for="nTeamsField">n Teams</label>
+    <input type="number" pattern="\d*" [(ngModel)]="nTeamsValue" id="nTeamsField" class="form-control" >
+  </div>
+</div>
+
+  <form>
+    <div class="container">
+    <label for="playerNames">Names</label>
+    <textarea [(ngModel)]="playerNamesValue"
+      class="form-control mb-3"
+      rows="18" 
+      cols="30"
+      style="text-align: left;" 
+      name="playerNames"
+      #playerNames
+      id="playerNames"
+      ></textarea>
+    </div>
+  <button type="button" (click)="onButtonGenerate(playerNames.value)" class="btn btn-primary">Generate</button>
+  </form>
+
+  <table class="table table-striped custom-table">
+  <caption *ngIf="duplicateNames.length >0">Removed: {{ duplicateNames }}</caption>
+    <thead>
+      <tr>
+        <th scope="col">Size</th>
+        <th scope="col">Names</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (team of teamsArray; track $index) {
+        <tr>
+          <td style="text-wrap: wrap;">{{ team.length | number }}</td>
+          <td class="wrap-cell">{{ team }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+
+</div>

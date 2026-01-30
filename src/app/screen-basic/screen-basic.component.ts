@@ -2,41 +2,23 @@ import { Component, OnInit} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterOutlet, ActivatedRoute } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
 import { CommonModule } from '@angular/common';
-import { filter, take } from 'rxjs';
-import { ScreenBasicComponent } from "./screen-basic/screen-basic.component";
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-screen-basic',
   imports: [NgbModule, RouterOutlet, CommonModule, FormsModule, ScreenBasicComponent],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.less'
+  templateUrl: './screen-basic.component.html',
+  styleUrl: './screen-basic.component.less'
 })
-export class AppComponent implements OnInit {
-  title = 'vb';
+export class ScreenBasicComponent {
   playerNamesValue = "";
   numTeamsSelectorValue = "2";
   numTeamsSelected = 2;
   nTeamsValue = "4";
   teamsArray: string[][] = [];
   duplicateNames: string[] = [];
-
-  constructor(private activatedRoute: ActivatedRoute){}
-
-  ngOnInit(): void {
-    this.activatedRoute.queryParams.pipe(
-      filter(params => Object.keys(params).length > 0), // Only proceed if params are not empty
-      take(1)
-    ).subscribe(params => {
-      const names = params['names']?.replaceAll(',', '\n');
-      if (names) {
-        this.playerNamesValue = names;
-      }
-    });
-  }
-
-onButtonGenerate(textinput: string): void{
+  
+  onButtonGenerate(textinput: string): void{
     if(this.numTeamsSelectorValue === 'n'){
       this.numTeamsSelected  = Number(this.nTeamsValue);
     }
