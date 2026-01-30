@@ -34,5 +34,9 @@ export class ScreenRotationsComponent {
       console.log('Modal dismissed');
     });
   }
+  open(player: Player){
+    const modalRef = this.modalService.open(ModalRotationsComponent);
+    modalRef.componentInstance.player = player;
+  }
 
 }

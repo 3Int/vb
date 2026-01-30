@@ -4,12 +4,9 @@
   <ul class="list-group mb-3">
       @for (player of players; track $index) {
         <li class="list-group-item">{{ player.name }}</li>
-        <button
-        class="btn btn-sm btn-primary"
-        (click)="openPlayerDialog(player)"
-      >
-        Edit Roles
-      </button>
+        <button class="btn btn-outline-primary" (click)="open(player)">
+	<div>Edit Roles</div>
+</button>
       }
   </ul>
   <div class="input-group mb-3">

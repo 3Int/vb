@@ -1,18 +1,14 @@
-<ng-template #rotationsModal let-modal>
   <div class="modal-header">
-    <h4 class="modal-title">Edit Player Roles</h4>
+    <h4 class="modal-title">{{ player.name }}</h4>
     <button
       type="button"
       class="btn-close"
-      (click)="modal.dismiss()"
+      (click)="activeModal.dismiss()"
       aria-label="Close"
     ></button>
   </div>
   <div class="modal-body">
     <form>
-      <div class="mb-3">
-        <label class="form-label">{{ player.name }}</label>
-      </div>
       <div class="form-check">
         <input
           class="form-check-input"
@@ -68,18 +64,10 @@
   <div class="modal-footer">
     <button
       type="button"
-      class="btn btn-secondary"
-      (click)="modal.dismiss()"
-    >
-      Cancel
-    </button>
-    <button
-      type="button"
       class="btn btn-primary"
-      (click)="savePlayer(); modal.close()"
+      (click)="savePlayer(); activeModal.close()"
     >
       Save
     </button>
   </div>
-</ng-template>
 
