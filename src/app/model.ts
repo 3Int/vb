@@ -25,7 +25,18 @@ export class Player{
     const values = 'OOOO'
     return [this.name, values];
   }
+  
+  valueOf(): string{
+    return this.name;
+  }
   static deSerialize(name: string, values: string): Player{
     return new Player(name);
   }
+  static isNew(newplayer:Player, players: Player[]): boolean {
+  const seen = new Set<string>(players.map(p => p.name));
+  if (seen.has(newplayer.name)){
+    return false
+  }
+  return true
+}
 }

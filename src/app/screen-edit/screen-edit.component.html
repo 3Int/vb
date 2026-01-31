@@ -1,0 +1,30 @@
+<div class="justify-content-md-center">
+  <h1>Players: {{ players.length }}</h1>
+  <div class="input-group mb-3">
+    <input
+      type="text"
+      [(ngModel)]="newItem"
+      class="form-control"
+      placeholder="Enter a name..."
+      (keyup.enter)="addItem()"
+    />
+    <button class="btn btn-primary" type="button" (click)="addItem()" >
+      <i class="bi bi-plus-lg"></i> Add
+    </button>
+  </div>
+  @if (alertMessage) {
+	<ngb-alert #selfClosingAlert type="danger" (closed)="alertMessage = ''">{{ alertMessage }}</ngb-alert>
+    }
+<div class="container mt-4">
+  <ul class="list-group mb-3">
+      @for (player of players; track $index) {
+        <li class="list-group-item">
+            <a (click)="openPlayerModal(player)" style="display: block; cursor: pointer;">{{ player.name }}</a>
+        </li>
+      }
+  </ul>
+
+</div>
+
+
+</div>

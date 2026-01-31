@@ -8,10 +8,11 @@ import { filter, take } from 'rxjs';
 import { ScreenBasicComponent } from "./screen-basic/screen-basic.component";
 import { ScreenRotationsComponent } from './screen-rotations/screen-rotations.component';
 import { Player } from './model';
+import { ScreenEditComponent } from './screen-edit/screen-edit.component';
 
 @Component({
   selector: 'app-root',
-  imports: [NgbModule, RouterOutlet, CommonModule, FormsModule, ScreenBasicComponent, ScreenRotationsComponent],
+  imports: [NgbModule, RouterOutlet, CommonModule, FormsModule, ScreenBasicComponent, ScreenRotationsComponent, ScreenEditComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.less'
 })
