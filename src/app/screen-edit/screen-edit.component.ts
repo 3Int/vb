@@ -44,6 +44,9 @@ export class ScreenEditComponent {
       }
     }
   }
+  removeItem(player: Player){
+    this.data.removePlayer(player);
+  }
 
   openPlayerModal(player: Player){
     const modalRef = this.modalService.open(ModalRotationsComponent);

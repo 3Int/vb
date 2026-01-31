@@ -18,6 +18,12 @@ export class DataService {
     }
     return false
   }
+  removePlayer(player: Player){
+    const index = this.players.indexOf(player);
+    if (index !== -1) {
+      this.players.splice(index, 1);
+    }
+  }
   getPlayers(): Player[] {
     let clone =Object.assign([],this.players);
     return clone
