@@ -1,1 +1,65 @@
-<p>rotations!</p>
+<div class="justify-content-md-center">
+<h1>Rotations</h1>
+<div ngbAccordion>
+  <div ngbAccordionItem>
+    <h2 ngbAccordionHeader>
+      <button ngbAccordionButton>Outside</button>
+    </h2>
+    <div ngbAccordionCollapse>
+      <div ngbAccordionBody>
+          @for (player of outsidePlayers; track $index) {
+            {{ player.name }}
+          }
+      </div>
+    </div>
+  </div>
+</div>
+<div ngbAccordion>
+  <div ngbAccordionItem>
+    <h2 ngbAccordionHeader>
+      <button ngbAccordionButton>Middle</button>
+    </h2>
+    <div ngbAccordionCollapse>
+      <div ngbAccordionBody>
+        <ng-template>Content for the first item</ng-template>
+      </div>
+    </div>
+  </div>
+</div>
+<div ngbAccordion>
+  <div ngbAccordionItem>
+    <h2 ngbAccordionHeader>
+      <button ngbAccordionButton>Opposite</button>
+    </h2>
+    <div ngbAccordionCollapse>
+      <div ngbAccordionBody>
+        <ng-template>Content for the first item</ng-template>
+      </div>
+    </div>
+  </div>
+</div>
+<div ngbAccordion>
+  <div ngbAccordionItem>
+    <h2 ngbAccordionHeader>
+      <button ngbAccordionButton>Setter</button>
+    </h2>
+    <div ngbAccordionCollapse>
+      <div ngbAccordionBody>
+        <ng-template>Content for the first item</ng-template>
+      </div>
+    </div>
+  </div>
+</div>
+<div ngbAccordion>
+  <div ngbAccordionItem>
+    <h2 ngbAccordionHeader>
+      <button ngbAccordionButton>Libero</button>
+    </h2>
+    <div ngbAccordionCollapse>
+      <div ngbAccordionBody>
+        <ng-template>Content for the first item</ng-template>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
