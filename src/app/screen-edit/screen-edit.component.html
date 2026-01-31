@@ -1,5 +1,5 @@
 <div class="justify-content-md-center">
-  <h1>Players: {{ players.length }}</h1>
+  <h1>Players: {{ data.getPlayers().length }}</h1>
   <div class="input-group mb-3">
     <input
       type="text"
@@ -17,7 +17,7 @@
     }
 <div class="container mt-4">
   <ul class="list-group mb-3">
-      @for (player of players; track $index) {
+      @for (player of data.getPlayers(); track $index) {
         <li class="list-group-item">
             <a (click)="openPlayerModal(player)" style="display: block; cursor: pointer;">{{ player.name }}</a>
         </li>

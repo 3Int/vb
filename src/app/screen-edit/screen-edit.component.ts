@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component, inject, Input, ViewChild } from '@angular/core';
 import { NgbAlert, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Player } from '../model';
 import { ModalRotationsComponent } from '../modal-rotations/modal-rotations.component';
@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { Subject } from 'rxjs/internal/Subject';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { debounceTime, tap } from 'rxjs/operators';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-screen-edit',
@@ -14,7 +15,7 @@ import { debounceTime, tap } from 'rxjs/operators';
   styleUrl: './screen-edit.component.less'
 })
 export class ScreenEditComponent {
-  @Input() players!: Player[];
+  data = inject(DataService);
   @ViewChild('selfClosingAlert', { static: false })selfClosingAlert!: NgbAlert;
   private _message$ = new Subject<string>();
   newItem: string = "";
@@ -34,9 +35,9 @@ export class ScreenEditComponent {
     const name = this.newItem.trim()
     if (name) {
       let newPlayer = new Player(name);
-      if (Player.isNew(newPlayer, this.players)){
-        this.players.push(newPlayer);
+      if(this.data.addPlayer(newPlayer)){
         this.newItem = '';
+        return
       }
       else{
         this.setAlertMessage(newPlayer.name);

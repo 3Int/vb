@@ -1,11 +1,12 @@
 // Original Team Generation Screen for arbitrary size and number of teams
-import { Component, Input, OnInit} from '@angular/core';
+import { Component, inject, Input, OnInit} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterOutlet, ActivatedRoute } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from '@angular/common';
 import { Player } from '../model';
 import { iter } from '../util';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-screen-basic',
@@ -14,7 +15,7 @@ import { iter } from '../util';
   styleUrl: './screen-basic.component.less'
 })
 export class ScreenBasicComponent {
-  @Input() players!: Player[];
+  data = inject(DataService);
   numTeamsSelectorValue = "2";
   numTeamsSelected = 2;
   nTeamsValue = "4";
@@ -30,7 +31,7 @@ export class ScreenBasicComponent {
     
     let teams = Array.from({ length: this.numTeamsSelected }, () => []);
     // clone array here
-    let localPlayers: Player[] = Object.assign([],this.players);
+    let localPlayers: Player[] = this.data.getPlayers();
 
     let nameslen = localPlayers.length;
     let iterator = iter(teams);
