@@ -5,6 +5,7 @@ import { RouterOutlet, ActivatedRoute } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from '@angular/common';
 import { Player } from '../model';
+import { iter } from '../util';
 
 @Component({
   selector: 'app-screen-basic',
@@ -14,46 +15,31 @@ import { Player } from '../model';
 })
 export class ScreenBasicComponent {
   @Input() players!: Player[];
-  playerNamesValue = "";
   numTeamsSelectorValue = "2";
   numTeamsSelected = 2;
   nTeamsValue = "4";
   teamsArray: string[][] = [];
-  duplicateNames: string[] = [];
   
-  onButtonGenerate(textinput: string): void{
+  onButtonGenerate(): void{
     if(this.numTeamsSelectorValue === 'n'){
       this.numTeamsSelected  = Number(this.nTeamsValue);
     }
     else{
       this.numTeamsSelected = Number(this.numTeamsSelectorValue);
     }
-    let nameslist = this.playerNamesValue
-        .split('\n')
-        .map(function(str){return str.trim();})
-        .filter(function(str){return str}); // boolean interpretation is same as non-empty
-    // remove duplicates by using a Set
-    let namesset = new Set(nameslist);
-    let names = [...namesset];
-
     
     let teams = Array.from({ length: this.numTeamsSelected }, () => []);
+    // clone array here
+    let localPlayers: Player[] = Object.assign([],this.players);
 
-    let nameslen = names.length;
-    function* iter(list: any[]){
-        let index = 0;
-        while(true){
-            yield list[index % list.length];
-            index++;
-        }
-    }
+    let nameslen = localPlayers.length;
     let iterator = iter(teams);
     for(let i =0; i < nameslen; i++){
-        let index = Math.floor(Math.random()* names.length);
-        let n = names[index]; 
-        names.splice(index,1);
+        let index = Math.floor(Math.random()* localPlayers.length);
+        let n = localPlayers[index];
+        localPlayers.splice(index,1);
         let team = iterator.next().value;
-        team.push(n);
+        team.push(n.name);
 
     }
     this.teamsArray = teams;
