@@ -1,5 +1,5 @@
 // Original Team Generation Screen for arbitrary size and number of teams
-import { Component, inject, Input, OnInit} from '@angular/core';
+import { Component, inject} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterOutlet, ActivatedRoute } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';

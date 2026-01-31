@@ -1,4 +1,11 @@
+<nav>
+  <ul ngbNav [activeId]="route.fragment | async" class="nav-tabs">
+    <li ngbNavItem="/edit"><a ngbNavLink routerLink="/edit" routerLinkActive="active"><i class="bi bi-pencil-square"></i>{{ data.getPlayers().length }}</a></li>
+    <li ngbNavItem="/basic"><a ngbNavLink routerLink="/basic" routerLinkActive="active"><i class="bi bi-shuffle"></i></a></li>
+    <li ngbNavItem="/rotations"><a ngbNavLink routerLink="/rotations" routerLinkActive="active"><i class="bi bi-arrow-repeat"></i></a></li>
+  </ul>
+</nav>
+<p></p>
 <main class="main">
-    <app-screen-edit></app-screen-edit>
-    <app-screen-basic></app-screen-basic>
+    <router-outlet></router-outlet>
 </main>

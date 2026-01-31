@@ -1,8 +1,9 @@
 // Team Generation Screen respecting volleyball roles as defined by `../model/Player`
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Player } from '../model';
 import { NgbAccordionBody, NgbAccordionCollapse, NgbAccordionHeader, NgbAccordionItem, NgbAccordionButton, NgbAccordionDirective, NgbAccordionToggle } from '@ng-bootstrap/ng-bootstrap';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-screen-rotations',
@@ -11,20 +12,21 @@ import { NgbAccordionBody, NgbAccordionCollapse, NgbAccordionHeader, NgbAccordio
   styleUrl: './screen-rotations.component.less'
 })
 export class ScreenRotationsComponent {
-  @Input() players!: Player[];
-  get outsidePlayers(): Player[] {
-    return this.players.filter(player => !player.outside);
+  data = inject(DataService);
+
+  get OutsidePlayers(): Player[] {
+    return this.data.getPlayers().filter(player => player.outside);
   }
-  get middlePlayers(): Player[] {
-    return this.players.filter(player => player.middle);
+  get MiddlePlayers(): Player[] {
+    return this.data.getPlayers().filter(player => player.middle);
   }
-  get oppositePlayers(): Player[] {
-    return this.players.filter(player => player.opposite);
+  get OppositePlayers(): Player[] {
+    return this.data.getPlayers().filter(player => player.opposite);
   }
   get SetterPlayers(): Player[] {
-    return this.players.filter(player => player.setter);
+    return this.data.getPlayers().filter(player => player.setter);
   }
   get LiberoPlayers(): Player[] {
-    return this.players.filter(player => player.libero);
+    return this.data.getPlayers().filter(player => player.libero);
   }
 }
