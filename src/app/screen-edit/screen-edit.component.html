@@ -19,8 +19,8 @@
   <ul class="list-group mb-3">
       @for (player of data.getPlayers(); track $index) {
         <li class="list-group-item d-flex justify-content-between">
-            <a (click)="openPlayerModal(player)" style="display: block; cursor: pointer;">{{ player.name }}</a>
-            <button (click)="removeItem(player)" class="btn btn-secondary btn-sm p-0" style="width: 24px; height: 24px" >
+            <a (click)="openPlayerModal(player)" style="display: block; cursor: pointer; flex-grow: 1; text-align: left;">{{ player.name }}</a>
+            <button (click)="removeItem(player)" class="btn btn-secondary btn-sm p-0 ms-2" style="width: 24px; height: 24px" >
               <i class="bi bi-x"></i>
             </button>
         </li>
