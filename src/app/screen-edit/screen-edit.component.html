@@ -1,0 +1,33 @@
+<div class="justify-content-md-center">
+  <h1>Players: {{ data.getPlayers().length }}</h1>
+  <div class="input-group mb-3">
+    <input
+      type="text"
+      [(ngModel)]="newItem"
+      class="form-control"
+      placeholder="Enter a name..."
+      (keyup.enter)="addItem()"
+    />
+    <button class="btn btn-primary" type="button" (click)="addItem()" >
+      <i class="bi bi-plus-lg"></i> Add
+    </button>
+  </div>
+  @if (alertMessage) {
+	<ngb-alert #selfClosingAlert type="danger" (closed)="alertMessage = ''">{{ alertMessage }}</ngb-alert>
+    }
+<div class="container mt-4">
+  <ul class="list-group mb-3">
+      @for (player of data.getPlayers(); track $index) {
+        <li class="list-group-item d-flex justify-content-between">
+            <a (click)="openPlayerModal(player)" style="display: block; cursor: pointer; flex-grow: 1; text-align: left;">{{ player.name }}</a>
+            <button (click)="removeItem(player)" class="btn btn-secondary btn-sm p-0 ms-2" style="width: 24px; height: 24px" >
+              <i class="bi bi-x"></i>
+            </button>
+        </li>
+      }
+  </ul>
+
+</div>
+
+
+</div>
