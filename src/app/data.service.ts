@@ -8,11 +8,13 @@ export class DataService {
   private players: Player[] = [];
 
   setPlayers(players: Player[]){
-    this.players = players;
+    for (let player of players){
+      this.addPlayer(player);
+    }
   }
   
   addPlayer(player: Player): boolean{
-    if (Player.isNew(player, this.players)){
+    if (player.name.trim() && Player.isNew(player, this.players)){
       this.players.push(player);
       return true
     }
