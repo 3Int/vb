@@ -30,7 +30,7 @@
       </tr>
     </thead>
     <tbody>
-      @for (team of teamsArray; track $index) {
+      @for (team of data.teams; track $index) {
         <tr>
           <td style="text-wrap: wrap;">{{ team.length | number }}</td>
           <td class="wrap-cell">{{ team }}</td>

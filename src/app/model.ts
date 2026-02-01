@@ -26,7 +26,7 @@ export class Player{
     return [this.name, values];
   }
   
-  valueOf(): string{
+  toString(): string{
     return this.name;
   }
   static deSerialize(name: string, values: string): Player{

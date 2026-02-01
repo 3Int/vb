@@ -6,6 +6,7 @@ import { Player } from './model';
 })
 export class DataService {
   private players: Player[] = [];
+  teams: Player[][] = [];
 
   setPlayers(players: Player[]){
     for (let player of players){

@@ -19,7 +19,6 @@ export class ScreenBasicComponent {
   numTeamsSelectorValue = "2";
   numTeamsSelected = 2;
   nTeamsValue = "4";
-  teamsArray: string[][] = [];
   
   onButtonGenerate(): void{
     if(this.numTeamsSelectorValue === 'n'){
@@ -40,10 +39,10 @@ export class ScreenBasicComponent {
         let n = localPlayers[index];
         localPlayers.splice(index,1);
         let team = iterator.next().value;
-        team.push(n.name);
+        team.push(n);
 
     }
-    this.teamsArray = teams;
+    this.data.teams = teams;
   }
 
 }
