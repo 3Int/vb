@@ -1,9 +1,11 @@
 // Team Generation Screen respecting volleyball roles as defined by `../model/Player`
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Player } from '../model';
 import { NgbAccordionBody, NgbAccordionCollapse, NgbAccordionHeader, NgbAccordionItem, NgbAccordionButton, NgbAccordionDirective, NgbAccordionToggle } from '@ng-bootstrap/ng-bootstrap';
 import { DataService } from '../data.service';
+import { assignPlayersRandomly } from '../util';
+import  SWIPL  from 'swipl-wasm';
 
 @Component({
   selector: 'app-screen-rotations',
@@ -11,13 +13,15 @@ import { DataService } from '../data.service';
   templateUrl: './screen-rotations.component.html',
   styleUrl: './screen-rotations.component.less'
 })
-export class ScreenRotationsComponent implements OnInit{
+export class ScreenRotationsComponent{
   data = inject(DataService);
-  ngOnInit(): void {
-    
+  async generateTeams(){
+    // https://de.wikipedia.org/wiki/Volleyball#Spielpositionen
+    // we want 2 outside, 1 opp, 1 set and either 2*middle or middle + libero
+    const teamCount = Math.floor(this.data.getPlayers().length / 6);
+    const swipl = await SWIPL({ arguments: ["-q"] });
+    console.log(swipl);
   }
-  // https://de.wikipedia.org/wiki/Volleyball#Spielpositionen
-  // we want 2 outside, 1 opp, 1 set and either 2*middle or middle + libero
 
   get OutsidePlayers(): Player[] {
     return this.data.getPlayers().filter(player => player.outside);
@@ -33,5 +37,10 @@ export class ScreenRotationsComponent implements OnInit{
   }
   get LiberoPlayers(): Player[] {
     return this.data.getPlayers().filter(player => player.libero);
+  }
+  get NoRolePlayers(): Player[] {
+    return this.data.getPlayers().filter(
+      player => !player.outside && !player.middle && !player.opposite && !player.setter && !player.libero
+      );
   }
 }

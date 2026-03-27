@@ -1,5 +1,9 @@
 <div class="justify-content-md-center">
 <h1>Rotations</h1>
+<form>
+	<button type="button" (click)="generateTeams()" class="btn btn-primary mb-3">Generate</button>
+</form>
+
 <div ngbAccordion>
 	<div ngbAccordionItem [collapsed]="false">
 		<h2 ngbAccordionHeader>
@@ -65,6 +69,20 @@
 			<div ngbAccordionBody>
 				<ng-template>
           @for (player of OutsidePlayers; track $index) {
+            {{ player.name }}
+          }
+				</ng-template>
+			</div>
+		</div>
+	</div>
+	<div ngbAccordionItem>
+		<h2 ngbAccordionHeader>
+			<button ngbAccordionButton>No Role: {{ NoRolePlayers.length }}</button>
+		</h2>
+		<div ngbAccordionCollapse>
+			<div ngbAccordionBody>
+				<ng-template>
+          @for (player of NoRolePlayers; track $index) {
             {{ player.name }}
           }
 				</ng-template>

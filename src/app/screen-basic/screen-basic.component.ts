@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from '@angular/common';
 import { Player } from '../model';
-import { iter } from '../util';
+import { assignPlayersRandomly, iter } from '../util';
 import { DataService } from '../data.service';
 
 @Component({
@@ -27,21 +27,8 @@ export class ScreenBasicComponent {
       this.numTeamsSelected = Number(this.numTeamsSelectorValue);
     }
     
-    let teams = Array.from({ length: this.numTeamsSelected }, () => []);
-    // clone array here
-    let localPlayers: Player[] = this.data.getPlayers();
-
-    let nameslen = localPlayers.length;
-    let iterator = iter(teams);
-    for(let i =0; i < nameslen; i++){
-        let index = Math.floor(Math.random()* localPlayers.length);
-        let n = localPlayers[index];
-        localPlayers.splice(index,1);
-        let team = iterator.next().value;
-        team.push(n);
-
-    }
-    this.data.teams = teams;
+    let teams: Player[][]= Array.from({ length: this.numTeamsSelected }, () => []);
+    this.data.teams = assignPlayersRandomly(this.data.getPlayers(),teams);
   }
 
 }
