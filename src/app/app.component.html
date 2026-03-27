@@ -2,9 +2,15 @@
     <router-outlet></router-outlet>
 </main>
 <nav>
-  <ul ngbNav [activeId]="route.fragment | async" class="nav-tabs custom-navbar bg-body-secondary">
-    <li ngbNavItem="" class="custom-navitem"><a ngbNavLink routerLink="" routerLinkActive="active"><i class="bi bi-pencil-square"></i>{{ data.getPlayers().length }}</a></li>
-    <li ngbNavItem="/basic.t" class="custom-navitem"><a ngbNavLink routerLink="/basic.t" routerLinkActive="active"><i class="bi bi-shuffle"></i></a></li>
-    <li ngbNavItem="/rotations.t" class="custom-navitem"><a ngbNavLink routerLink="/rotations.t" routerLinkActive="active"><i class="bi bi-arrow-repeat"></i></a></li>
+  <ul ngbNav [activeId]="activeId" class="nav-tabs custom-navbar bg-body-secondary">
+    <li ngbNavItem="/" class="custom-navitem"><a ngbNavLink routerLink="" routerLinkActive="active">
+      <i class="bi bi-pencil-square"></i>{{ data.getPlayers().length }}</a>
+    </li>
+    <li ngbNavItem="/basic.t" class="custom-navitem"><a ngbNavLink routerLink="/basic.t" routerLinkActive="active">
+      <i class="bi bi-shuffle"></i></a>
+    </li>
+    <li ngbNavItem="/rotations.t" class="custom-navitem"><a ngbNavLink routerLink="/rotations.t" routerLinkActive="active">
+      <i class="bi bi-arrow-repeat"></i></a>
+    </li>
   </ul>
 </nav>

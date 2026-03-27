@@ -1,7 +1,6 @@
 // Original Team Generation Screen for arbitrary size and number of teams
 import { Component, inject} from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterOutlet, ActivatedRoute } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from '@angular/common';
 import { Player } from '../model';
@@ -10,7 +9,7 @@ import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-screen-basic',
-  imports: [NgbModule, RouterOutlet, CommonModule, FormsModule],
+  imports: [NgbModule, CommonModule, FormsModule],
   templateUrl: './screen-basic.component.html',
   styleUrl: './screen-basic.component.less'
 })

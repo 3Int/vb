@@ -1,31 +1,39 @@
 import { Component, inject, OnInit} from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterOutlet, ActivatedRoute, RouterLink } from '@angular/router';
+import { RouterOutlet, ActivatedRoute, RouterLink, Router, NavigationEnd } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { CommonModule } from '@angular/common';
 import { filter, take } from 'rxjs';
-import { ScreenBasicComponent } from "./screen-basic/screen-basic.component";
-import { ScreenRotationsComponent } from './screen-rotations/screen-rotations.component';
 import { Player } from './model';
-import { ScreenEditComponent } from './screen-edit/screen-edit.component';
 import { DataService } from './data.service';
 
 @Component({
   selector: 'app-root',
-  imports: [NgbModule, RouterOutlet, CommonModule, FormsModule, ScreenBasicComponent, ScreenRotationsComponent, ScreenEditComponent, RouterLink],
+  imports: [NgbModule, RouterOutlet, CommonModule, FormsModule, RouterLink],
   templateUrl: './app.component.html',
   styleUrl: './app.component.less'
 })
 export class AppComponent implements OnInit {
   title = 'vb';
   data = inject(DataService);
+  activeId = '/';
 
-  constructor(public route: ActivatedRoute){}
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router
+  ){}
 
   ngOnInit(): void {
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe(() => {
+        this.activeId = this.router.url;
+      });
+    // process query params
     this.route.queryParams.pipe(
-      filter(params => Object.keys(params).length > 0), // Only proceed if params are not empty
+      // Only proceed if params are not empty
+      filter(params => Object.keys(params).length > 0),
       take(1)
     ).subscribe(params => {
       if (params['names']){
