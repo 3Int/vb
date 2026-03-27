@@ -21,9 +21,14 @@ export class Player{
     this.setter = setter;
     this.libero = libero;
   }
-  serialize(): string[] {
-    const values = 'OOOO'
-    return [this.name, values];
+  getRoles(): string[] {
+    const roles = [];
+    if (this.outside){roles.push('OH')}
+    if (this.middle){roles.push('M')}
+    if (this.opposite){roles.push('OPP')}
+    if (this.setter){roles.push('S')}
+    if (this.libero){roles.push('L')}
+    return roles;
   }
   
   toString(): string{
